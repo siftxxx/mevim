@@ -70,6 +70,7 @@ hi search cterm=NONE ctermfg=0 ctermbg=222 guifg=#fad07a
 hi Visual ctermfg=218 ctermbg=243
 hi Statement ctermfg=217
 hi comment ctermfg=35
+au BufRead,BufNewFile *.py,*.c,*.cpp,*.h,*.sh,*.proto syn match PreProc /\w*\./
 au BufRead,BufNewFile *.py,*.c,*.cpp,*.h,*.sh,*.proto syn match Operator /[,:=!\.\-\~\+\*\%\|]/
 au BufRead,BufNewFile *.py,*.c,*.cpp,*.h,*.sh,*.proto syn match StringDelimiter /[\(\)\[\]{}<>]/
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.cpp*,*.h,*.sh,*.proto match Error /\s\+$/
