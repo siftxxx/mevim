@@ -12,4 +12,5 @@ if [ -e ~/.vim ]; then
 fi
 mv vim ~/.vim
 
-echo "Successfully Deploy dai's vim."
+echo "Successfully Deploy sift's vim."
+echo "Yeah, you find it and you get it."
