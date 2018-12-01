@@ -1,13 +1,13 @@
 #!/bin/bash
 
 if [ -e ~/.vimrc ]; then
-  cp ~/.vimrc "~/vimrc.bak"
+  cp ~/.vimrc ~/vimrc.bak
   rm -f ~/.vimrc
 fi
-mv vimrc "~/.vimrc"
+mv vimrc ~/.vimrc
 
 if [ -e ~/.vim ]; then
-  cp -r ~/.vim "~/vim.bak"
+  cp -r ~/.vim ~/vim.bak
   rm -rf ~/.vim
 fi
 mv vim ~/.vim
