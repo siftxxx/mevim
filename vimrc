@@ -20,6 +20,8 @@ endif
 " Basic config.
 set autoread
 set autowrite
+set cindent
+set autoindent
 
 set backspace=2
 set expandtab
@@ -50,7 +52,7 @@ set history=1000
 set wrap
 set linebreak
 set list
-set listchars=tab:»·,trail:·
+set listchars=tab:»·,trail:·,eol:$
 set cursorline
 
 "DIY color based on jellybeans.
