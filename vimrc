@@ -18,28 +18,16 @@ if &diff
 endif
 
 " Basic config.
+set confirm
+set listchars=tab:»·,trail:·,eol:$
 set autoread
 set autowrite
-set cindent
-set autoindent
-
-set backspace=2
-set expandtab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-
-set encoding=utf-8
-set fileencodings=utf-8,bg18030,gbk,big5,latin1
-
-set showmatch
-set matchpairs+=<:>
-set hlsearch
-set ignorecase
-set incsearch
-
+set wildmenu
+set report=0
 set clipboard+=unnamed
 set completeopt=preview,menu
+set encoding=utf-8
+set fileencodings=utf-8,bg18030,gbk,big5,latin1
 set gdefault
 set number
 set numberwidth=5
@@ -51,8 +39,38 @@ set colorcolumn=+1
 set history=1000
 set wrap
 set linebreak
-set listchars=tab:»·,trail:·,eol:$
 set cursorline
+
+" text formatting/layout
+set cindent
+set autoindent
+set smartindent
+set backspace=2
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set smarttab
+
+"text searching/matching
+set showmatch
+set matchpairs+=<:>
+set ignorecase
+set hlsearch
+set incsearch
+
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.cpp*,*.h,*.sh,*.proto match Error /\s\+$/
+autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
+au BufWritePre * call Removetrailingspace()
+
+function! Removetrailingspace()
+    if $vim_hate_space_errors != '0' &&
+                \(&filetype == 'c' || &filetype == 'cpp' || &filetype == 'vim' || &filetype == 'sh' || &filetype == 'py')
+        normal m`
+        silent! :%s/\s\+$//e
+        normal ``
+    endif
+endfunction
 
 setlocal indentexpr=GetGooglePythonIndent(v:lnum)
 function GetGooglePythonIndent(lnum)
@@ -79,11 +97,13 @@ function GetGooglePythonIndent(lnum)
   " Delegate the rest to the original function.
   return GetPythonIndent(a:lnum)
 endfunction
+let pyindent_nested_paren="&sw*2"
+let pyindent_open_paren="&sw*2"
 
 "DIY color based on jellybeans.
 hi Normal ctermfg=188
-hi Operator ctermfg=214 
-hi NonText ctermfg=134 guifg=#af5fdf 
+hi Operator ctermfg=214
+hi NonText ctermfg=134 guifg=#af5fdf
 hi search cterm=NONE ctermfg=0 ctermbg=222 guifg=#fad07a
 hi Visual ctermfg=218 ctermbg=243
 hi Statement ctermfg=217
@@ -93,7 +113,6 @@ hi CursorLine term=bold cterm=underline ctermfg=None ctermbg=0
 au BufRead,BufNewFile *.py,*.c,*.cpp,*.h,*.sh,*.proto syn match PreProc /\w*\./
 au BufRead,BufNewFile *.py,*.c,*.cpp,*.h,*.sh,*.proto syn match Operator /[,:=!\.\-\~\+\*\%\|]/
 au BufRead,BufNewFile *.py,*.c,*.cpp,*.h,*.sh,*.proto syn match StringDelimiter /[\(\)\[\]{}<>]/
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.cpp*,*.h,*.sh,*.proto match Error /\s\+$/
 
 au BufRead,BufNewFile * syn match Type /\S*nz_album/
 au BufRead,BufNewFile * syn match String /\S*nz_music/
