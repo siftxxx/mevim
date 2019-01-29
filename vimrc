@@ -40,6 +40,7 @@ set history=1000
 set wrap
 set linebreak
 set cursorline
+set laststatus=2
 
 " text formatting/layout
 set cindent
