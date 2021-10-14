@@ -116,8 +116,7 @@ au BufRead,BufNewFile *.py,*.c,*.cpp,*.h,*.sh,*.proto syn match Operator /[,:=!\
 au BufRead,BufNewFile *.py,*.c,*.cpp,*.h,*.sh,*.proto syn match StringDelimiter /[\(\)\[\]{}<>]/
 
 highlight RedundantSpaces ctermfg=110
-match RedundantSpaces /\|\|\|\|\|\|
-/
+match RedundantSpaces /\|\|\|\|\|\|/
 
 "au BufRead,BufNewFile * syn match Type /\S*nz_album/
 "au BufRead,BufNewFile * syn match String /\S*nz_music/
